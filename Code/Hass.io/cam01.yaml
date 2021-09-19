@@ -1,0 +1,57 @@
+esphome:
+  name: cam1
+  platform: ESP32
+  board: esp-wrover-kit
+
+wifi:
+  ssid: "<SSID>"
+  password: "<SSID Password>"
+
+  ap:
+    ssid: "Camera-AP-1"
+    password: "<AP Password>"
+
+  manual_ip:
+    # Set this to the IP of the ESP
+    static_ip: 192.168.1.100
+    # Set this to the IP address of the router. Often ends with .1
+    gateway: 192.168.1.1
+    # The subnet of the network. 255.255.255.0 works for most home networks.
+    subnet: 255.255.255.0
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "<API Password>"
+  port: 6053
+
+ota:
+  password: "<OTA Password>"
+  safe_mode: True
+  port: 3232
+
+esp32_camera:
+  # Image settings
+  name: cam1
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+  vertical_flip: true
+  horizontal_mirror: true
+  brightness: 0
+  contrast: 0
+  saturation: 0
+  resolution: 1600x1200
+  jpeg_quality: 10
